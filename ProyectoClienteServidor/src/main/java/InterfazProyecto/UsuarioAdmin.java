@@ -199,7 +199,7 @@ public class UsuarioAdmin extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Bienvenido Admin");
                     
                     //VAMOS A CREAR UNA NUEVA VENTANA
-                    Home menu = new Home();
+                    HomeAdmin menu = new HomeAdmin();
                     menu.setVisible(true);
                     
                     //OCULTAREMOS NUESTRA VENTANA DE LOGIN Y MOSTRAREMOS LA VENTANA PRINCIPAL          

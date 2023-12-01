@@ -5,7 +5,7 @@
 
 package com.mycompany.proyectoclienteservidor;
 
-import InterfazProyecto.Home;
+import InterfazProyecto.HomeAdmin;
 import InterfazProyecto.TipoUsuario;
 import InterfazProyecto.UsuarioAdmin;
 import InterfazProyecto.UsuarioRegular;

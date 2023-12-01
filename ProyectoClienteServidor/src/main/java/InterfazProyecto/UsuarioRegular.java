@@ -205,7 +205,7 @@ public class UsuarioRegular extends javax.swing.JFrame {
     private void btnLoginUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginUserActionPerformed
          try {
             autenticarUsuario();
-            Home home = new Home();
+            HomeAdmin home = new HomeAdmin();
             home.setVisible(true);
             this.dispose();
         } catch (NuevaExcepcion ex) {

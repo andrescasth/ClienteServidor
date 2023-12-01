@@ -349,7 +349,7 @@ public class Canada extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-       Home home = new Home();
+       HomeAdmin home = new HomeAdmin();
         home.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
