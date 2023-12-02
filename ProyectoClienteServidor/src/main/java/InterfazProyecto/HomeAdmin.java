@@ -22,6 +22,8 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author andre
  */
+
+
 public class HomeAdmin extends javax.swing.JFrame {
     DefaultTableModel mt = new DefaultTableModel();
     
@@ -31,11 +33,17 @@ public class HomeAdmin extends javax.swing.JFrame {
     public HomeAdmin() {
         initComponents();
         
-        String sql = "SELECT * FROM t_paises";
+        String sqlPaises = "SELECT * FROM t_paises";
+        //String sqlAlojamientos = "SELECT * FROM t_alojamientos";
         Connection nuevaConexion; 
+        
+        
+        
+        
+        // Paises
         try {
             nuevaConexion = DriverManager.getConnection("jdbc:mysql://localhost/paises?serverTimezone=UTC", "root","Rojo2001.");
-        
+
         Statement st;
         String ids[] = {"Pais","Tipo", "Precio","Fecha"};
         mt.setColumnIdentifiers(ids);
@@ -46,7 +54,7 @@ public class HomeAdmin extends javax.swing.JFrame {
         
             st = nuevaConexion.createStatement();
             
-            ResultSet result = st.executeQuery(sql);
+            ResultSet result = st.executeQuery(sqlPaises);
             
             while(result.next()){
                 dato[0]= result.getString(2);
@@ -96,19 +104,6 @@ public class HomeAdmin extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         btnAgregarPais = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jLabel8 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
-        jLabel9 = new javax.swing.JLabel();
-        jSpinner2 = new javax.swing.JSpinner();
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         txtIDActualizar = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
 
@@ -250,134 +245,6 @@ public class HomeAdmin extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Paises", jPanel1);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 473, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 625, Short.MAX_VALUE)
-        );
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(jTable2);
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel8.setText("¡Bienvenido Admin!");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(45, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel8)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(376, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-
-        jTabbedPane1.addTab("Actividades", jPanel2);
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 615, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 411, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Alojamientos", jPanel4);
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel6.setText("Seguidores");
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel9.setText("Seguidos");
-
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setText("Agregar Publicaciones");
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\andre\\OneDrive\\Documentos\\NetBeansProjects\\ProyectoClienteServidor\\src\\main\\java\\logo\\user.png")); // NOI18N
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(246, 246, 246))
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(206, 206, 206)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(157, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(59, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Perfil", jPanel5);
-
         jLabel2.setText("ID");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -406,116 +273,97 @@ public class HomeAdmin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAgregarPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPaisActionPerformed
-       Pais pais = new Pais();
-        
-        pais.setUbicacion(txtPaisAgregar.getText());
-        pais.setTipoViaje((String) cboxTipoAgregar.getSelectedItem());
-        pais.setPrecio(Double.parseDouble(txtPrecioAgregar.getText()));
-        pais.setFecha(txtFechaAgregar.getText());
-       
-       mt.addRow(new Object[]{pais.getUbicacion(), pais.getTipoViaje(), pais.getPresupuesto(), pais.getFecha()});
-       txtPaisAgregar.setText("");
-       txtPrecioAgregar.setText("");
-       txtFechaAgregar.setText("");
-      
-       
-       //BASES DE DATOS
-       try{
-            Connection nuevaConexion = DriverManager.getConnection("jdbc:mysql://localhost/paises?serverTimezone=UTC", "root","Rojo2001."); 
-        String comando = "INSERT INTO t_paises( pais, tipo, precio, fecha)"
-                + "VALUES(?,?,?,?)";
-        
-        PreparedStatement comandoPreparado = nuevaConexion.prepareStatement(comando);
-        
-        comandoPreparado.setString(1, pais.getUbicacion());
-        comandoPreparado.setString(2, pais.getTipoViaje());
-        comandoPreparado.setDouble(3, pais.getPresupuesto());
-        comandoPreparado.setString(4, pais.getFecha());
-       
-        
-        comandoPreparado.executeUpdate();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Error al conectar con la Base de Datos "+ex.getMessage());
-            
-                             
-
-      } 
-       
-    }//GEN-LAST:event_btnAgregarPaisActionPerformed
-
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-       
-        
-        
+
         try {
             Connection nuevaConexion = DriverManager.getConnection("jdbc:mysql://localhost/paises?serverTimezone=UTC", "root","Rojo2001.");
-        
-            
+
             String comando_delete = "DELETE FROM t_paises  WHERE id = ?";
-        
+
             PreparedStatement comandoPreparado = nuevaConexion.prepareStatement(comando_delete);
-            
-       // comandoPreparado.setString(1,txtIDActualizar.getText());
-        comandoPreparado.setInt(1, Integer.parseInt(txtIDActualizar.getText()));
-        
-        comandoPreparado.executeUpdate();
-        
-        
-        int fila = Integer.parseInt(txtIDActualizar.getText());
-        
-         mt.removeRow(fila-1);
-        
-        
+
+            // comandoPreparado.setString(1,txtIDActualizar.getText());
+            comandoPreparado.setInt(1, Integer.parseInt(txtIDActualizar.getText()));
+
+            comandoPreparado.executeUpdate();
+
+            int fila = Integer.parseInt(txtIDActualizar.getText());
+
+            mt.removeRow(fila-1);
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "Error al conectar con la Base de Datos "+ex.getMessage());
         }
     }//GEN-LAST:event_btnBorrarActionPerformed
 
-    private void btnActualizarPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarPaisActionPerformed
-       
-        
-       
-        
-       
-       
-       try {
-            Connection nuevaConexion = DriverManager.getConnection("jdbc:mysql://localhost/paises?serverTimezone=UTC", "root","Rojo2001.");
-        
-            
-            String comando_update = "UPDATE t_paises SET  pais=?, tipo = ?,precio = ?, fecha = ? WHERE id = ?";
-        
-            PreparedStatement comandoPreparado = nuevaConexion.prepareStatement(comando_update);
-            
-       // comandoPreparado.setString(1,txtIDActualizar.getText());
-        comandoPreparado.setString(1, txtPaisAgregar.getText());
-        comandoPreparado.setString(2, (String) cboxTipoAgregar.getSelectedItem());
-        comandoPreparado.setDouble(3, Double.parseDouble(txtPrecioAgregar.getText()));
-        comandoPreparado.setString(4, txtFechaAgregar.getText());
-        
-        
-        
-        
-        
-        comandoPreparado.setInt(5,Integer.parseInt(txtIDActualizar.getText()));
-        
-        comandoPreparado.executeUpdate();
-            
-       int fila = Integer.parseInt(txtIDActualizar.getText());
-        
-        mt.setValueAt(txtPaisAgregar.getText(),fila-1,0 );
-        mt.setValueAt((String) cboxTipoAgregar.getSelectedItem(),fila-1,1 );
-        mt.setValueAt(Double.parseDouble(txtPrecioAgregar.getText()),fila-1,2 );
-        mt.setValueAt(txtFechaAgregar.getText(),fila-1,3 );
-        
-         txtPaisAgregar.setText("");
+    private void btnAgregarPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPaisActionPerformed
+        Pais pais = new Pais();
+
+        pais.setUbicacion(txtPaisAgregar.getText());
+        pais.setTipoViaje((String) cboxTipoAgregar.getSelectedItem());
+        pais.setPrecio(Double.parseDouble(txtPrecioAgregar.getText()));
+        pais.setFecha(txtFechaAgregar.getText());
+
+        mt.addRow(new Object[]{pais.getUbicacion(), pais.getTipoViaje(), pais.getPresupuesto(), pais.getFecha()});
+        txtPaisAgregar.setText("");
         txtPrecioAgregar.setText("");
-        txtFechaAgregar.setText("");   
-        
+        txtFechaAgregar.setText("");
+
+        //BASES DE DATOS
+        try{
+            Connection nuevaConexion = DriverManager.getConnection("jdbc:mysql://localhost/paises?serverTimezone=UTC", "root","Rojo2001.");
+            String comando = "INSERT INTO t_paises( pais, tipo, precio, fecha)"
+            + "VALUES(?,?,?,?)";
+
+            PreparedStatement comandoPreparado = nuevaConexion.prepareStatement(comando);
+
+            comandoPreparado.setString(1, pais.getUbicacion());
+            comandoPreparado.setString(2, pais.getTipoViaje());
+            comandoPreparado.setDouble(3, pais.getPresupuesto());
+            comandoPreparado.setString(4, pais.getFecha());
+
+            comandoPreparado.executeUpdate();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error al conectar con la Base de Datos "+ex.getMessage());
+
+        }
+
+    }//GEN-LAST:event_btnAgregarPaisActionPerformed
+
+    private void btnActualizarPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarPaisActionPerformed
+
+        try {
+            Connection nuevaConexion = DriverManager.getConnection("jdbc:mysql://localhost/paises?serverTimezone=UTC", "root","Rojo2001.");
+
+            String comando_update = "UPDATE t_paises SET  pais=?, tipo = ?,precio = ?, fecha = ? WHERE id = ?";
+
+            PreparedStatement comandoPreparado = nuevaConexion.prepareStatement(comando_update);
+
+            // comandoPreparado.setString(1,txtIDActualizar.getText());
+            comandoPreparado.setString(1, txtPaisAgregar.getText());
+            comandoPreparado.setString(2, (String) cboxTipoAgregar.getSelectedItem());
+            comandoPreparado.setDouble(3, Double.parseDouble(txtPrecioAgregar.getText()));
+            comandoPreparado.setString(4, txtFechaAgregar.getText());
+
+            comandoPreparado.setInt(5,Integer.parseInt(txtIDActualizar.getText()));
+
+            comandoPreparado.executeUpdate();
+
+            int fila = Integer.parseInt(txtIDActualizar.getText());
+
+            mt.setValueAt(txtPaisAgregar.getText(),fila-1,0 );
+            mt.setValueAt((String) cboxTipoAgregar.getSelectedItem(),fila-1,1 );
+            mt.setValueAt(Double.parseDouble(txtPrecioAgregar.getText()),fila-1,2 );
+            mt.setValueAt(txtFechaAgregar.getText(),fila-1,3 );
+
+            txtPaisAgregar.setText("");
+            txtPrecioAgregar.setText("");
+            txtFechaAgregar.setText("");
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "Error al conectar con la Base de Datos "+ex.getMessage());
         }
-       
+
     }//GEN-LAST:event_btnActualizarPaisActionPerformed
 
     /**
@@ -561,26 +409,13 @@ public class HomeAdmin extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregarPais;
     private javax.swing.JButton btnBorrar;
     private javax.swing.JComboBox<String> cboxTipoAgregar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton5;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JLabel lblFechaAgregar;
     private javax.swing.JLabel lblPaisAgregar;
     private javax.swing.JLabel lblPrecioAgregar;
