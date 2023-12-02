@@ -13,12 +13,12 @@ public class Alojamiento {
     private String pais;
    private String ciudad;
    private double precio;
-   private int cantidad;
+   private String cantidad;
 
     public Alojamiento() {
     }
 
-    public Alojamiento(String pais, String ciudad, double precio, int cantidad) {
+    public Alojamiento(String pais, String ciudad, double precio, String cantidad) {
         this.pais = pais;
         this.ciudad = ciudad;
         this.precio = precio;
@@ -49,13 +49,16 @@ public class Alojamiento {
         this.precio = precio;
     }
 
-    public int getCantidad() {
+    public String getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(int cantidad) {
+    public void setCantidad(String cantidad) {
         this.cantidad = cantidad;
+    }
+
+    
     }
    
    
-}
+

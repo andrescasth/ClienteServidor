@@ -340,6 +340,12 @@ public class Alojamientos extends javax.swing.JFrame {
         btnCerrarAlojamiento2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnCerrarAlojamiento2.setText("Cerrar");
 
+        txtPersonasAlojamiento2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPersonasAlojamiento2ActionPerformed(evt);
+            }
+        });
+
         lblFechaAgregar3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblFechaAgregar3.setText("Cantidad");
 
@@ -464,7 +470,38 @@ public class Alojamientos extends javax.swing.JFrame {
     }//GEN-LAST:event_txtAlojamientoPais2ActionPerformed
 
     private void btnActualizarAlojamiento2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarAlojamiento2ActionPerformed
-        // TODO add your handling code here:
+        try {
+            Connection nuevaConexion = DriverManager.getConnection("jdbc:mysql://localhost/paises?serverTimezone=UTC", "root","Rojo2001.");
+
+            String comando_update = "UPDATE t_alojamientos SET  pais=?, ciudad = ?,precio = ?, cantidad = ? WHERE id = ?";
+
+            PreparedStatement comandoPreparado = nuevaConexion.prepareStatement(comando_update);
+
+            // comandoPreparado.setString(1,txtIDActualizar.getText());
+            comandoPreparado.setString(1, txtAlojamientoPais2.getText());
+            comandoPreparado.setString(2, txtCiudadAlojamiento2.getText());
+            comandoPreparado.setDouble(3, Double.parseDouble(txtPrecioAlojamiento2.getText()));
+            comandoPreparado.setString(4, txtPersonasAlojamiento.getText());
+
+            comandoPreparado.setInt(5,Integer.parseInt(txtIDAlojamiento.getText()));
+
+            comandoPreparado.executeUpdate();
+
+            int fila = Integer.parseInt(txtIDAlojamiento.getText());
+
+            mt.setValueAt(txtAlojamientoPais2.getText(),fila-1,0 );
+            mt.setValueAt(txtCiudadAlojamiento2.getText(),fila-1,1 );
+            mt.setValueAt(Double.parseDouble(txtPrecioAlojamiento2.getText()),fila-1,2 );
+            mt.setValueAt(txtPersonasAlojamiento.getText(),fila-1,3 );
+
+            txtAlojamientoPais2.setText("");
+            txtCiudadAlojamiento2.setText("");
+            txtPrecioAlojamiento2.setText("");
+            txtPersonasAlojamiento2.setText("");
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error al conectar con la Base de Datos "+ex.getMessage());
+        }
     }//GEN-LAST:event_btnActualizarAlojamiento2ActionPerformed
 
     private void btnAgregarAlojameinto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarAlojameinto2ActionPerformed
@@ -473,7 +510,7 @@ public class Alojamientos extends javax.swing.JFrame {
         alojamiento.setPais(txtAlojamientoPais2.getText());
         alojamiento.setCiudad(txtCiudadAlojamiento2.getText());
         alojamiento.setPrecio(Double.parseDouble(txtPrecioAlojamiento2.getText()));
-        alojamiento.setCantidad(Integer.parseInt(txtPersonasAlojamiento2.getText()));
+        alojamiento.setCantidad(txtPersonasAlojamiento2.getText());
 
         mt.addRow(new Object[]{alojamiento.getPais(), alojamiento.getCiudad(), alojamiento.getPrecio(), alojamiento.getCantidad()});
         txtAlojamientoPais2.setText("");
@@ -492,7 +529,7 @@ public class Alojamientos extends javax.swing.JFrame {
             comandoPreparado.setString(1, alojamiento.getPais());
             comandoPreparado.setString(2, alojamiento.getCiudad());
             comandoPreparado.setDouble(3, alojamiento.getPrecio());
-            comandoPreparado.setInt(4, alojamiento.getCantidad());
+            comandoPreparado.setString(4, alojamiento.getCantidad());
 
             comandoPreparado.executeUpdate();
         } catch (SQLException ex) {
@@ -504,6 +541,10 @@ public class Alojamientos extends javax.swing.JFrame {
     private void btnBorrarAlojamiento2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarAlojamiento2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBorrarAlojamiento2ActionPerformed
+
+    private void txtPersonasAlojamiento2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPersonasAlojamiento2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPersonasAlojamiento2ActionPerformed
 
     /**
      * @param args the command line arguments
