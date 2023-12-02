@@ -8,20 +8,22 @@ package com.mycompany.proyectoclienteservidor;
  *
  * @author andre
  */
-public class Destinos {
+public class Pais {
     private String ubicacion;
     private String tipoViaje;
-    private double presupuesto;
+    private double precio;
+    private String fecha;
 
-    public Destinos() {
+    public Pais() {
     }
 
     
     
-    public Destinos(String ubicacion, String tipoViaje, double presupuesto) {
+    public Pais(String ubicacion, String tipoViaje, double precio, String fecha) {
         this.ubicacion = ubicacion;
         this.tipoViaje = tipoViaje;
-        this.presupuesto = presupuesto;
+        this.precio = precio;
+        this.fecha= fecha;
     }
 
     public String getUbicacion() {
@@ -41,11 +43,19 @@ public class Destinos {
     }
 
     public double getPresupuesto() {
-        return presupuesto;
+        return precio;
     }
 
-    public void setPresupuesto(double presupuesto) {
-        this.presupuesto = presupuesto;
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
     
     

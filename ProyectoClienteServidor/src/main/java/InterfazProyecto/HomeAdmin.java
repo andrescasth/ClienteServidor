@@ -4,6 +4,7 @@
  */
 package InterfazProyecto;
 
+import com.mycompany.proyectoclienteservidor.Pais;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -19,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class HomeAdmin extends javax.swing.JFrame {
     DefaultTableModel mt = new DefaultTableModel();
+    
     /**
      * Creates new form test
      */
@@ -317,46 +319,31 @@ public class HomeAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-       String pais = txtPaisAgregar.getText();
-       String tipo = (String) cboxTipoAgregar.getSelectedItem();
-       Double precio = Double.parseDouble(txtPrecioAgregar.getText());
-       String fecha = txtFechaAgregar.getText();
+       Pais pais = new Pais();
+        
+        pais.setUbicacion(txtPaisAgregar.getText());
+        pais.setTipoViaje((String) cboxTipoAgregar.getSelectedItem());
+        pais.setPrecio(Double.parseDouble(txtPrecioAgregar.getText()));
+        pais.setFecha(txtFechaAgregar.getText());
        
-       mt.addRow(new Object[]{pais, tipo, precio, fecha});
+       mt.addRow(new Object[]{pais.getUbicacion(), pais.getTipoViaje(), pais.getPresupuesto(), pais.getFecha()});
        txtPaisAgregar.setText("");
        txtPrecioAgregar.setText("");
        txtFechaAgregar.setText("");
       
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        mt.removeRow(jTable1.getSelectedRow());
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
        
-        mt.setValueAt(txtPaisAgregar.getText(),jTable1.getSelectedRow(),0 );
-        mt.setValueAt((String) cboxTipoAgregar.getSelectedItem(),jTable1.getSelectedRow(),1 );
-        mt.setValueAt(Double.parseDouble(txtPrecioAgregar.getText()),jTable1.getSelectedRow(),2 );
-        mt.setValueAt(txtFechaAgregar.getText(),jTable1.getSelectedRow(),3 );
-        
-        txtPaisAgregar.setText("");
-       txtPrecioAgregar.setText("");
-       txtFechaAgregar.setText("");
-       
-       /*
-        //BASES DE DATOS
+       //BASES DE DATOS
        try{
-            Connection nuevaConexion = DriverManager.getConnection("jdbc:mysql://localhost/usuarios?serverTimezone=UTC", "root","Rojo2001."); 
-        String comando = "INSERT INTO t_paises( nombre, tipo, precio, fecha)"
+            Connection nuevaConexion = DriverManager.getConnection("jdbc:mysql://localhost/paises?serverTimezone=UTC", "root","Rojo2001."); 
+        String comando = "INSERT INTO t_paises( pais, tipo, precio, fecha)"
                 + "VALUES(?,?,?,?)";
         
         PreparedStatement comandoPreparado = nuevaConexion.prepareStatement(comando);
         
-        comandoPreparado.setString(1, .getNombre());
-        comandoPreparado.setString(2, usuarioNuevo.getApellido());
-        comandoPreparado.setString(3, usuarioNuevo.getCorreo());
-        comandoPreparado.setString(4, usuarioNuevo.getPassword());
+        comandoPreparado.setString(1, pais.getUbicacion());
+        comandoPreparado.setString(2, pais.getTipoViaje());
+        comandoPreparado.setDouble(3, pais.getPresupuesto());
+        comandoPreparado.setString(4, pais.getFecha());
        
         
         comandoPreparado.executeUpdate();
@@ -366,7 +353,29 @@ public class HomeAdmin extends javax.swing.JFrame {
                              
 
       } 
-       */
+       
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        mt.removeRow(jTable1.getSelectedRow());
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+       
+        
+        
+        mt.setValueAt(txtPaisAgregar.getText(),jTable1.getSelectedRow(),0 );
+        mt.setValueAt((String) cboxTipoAgregar.getSelectedItem(),jTable1.getSelectedRow(),1 );
+        mt.setValueAt(Double.parseDouble(txtPrecioAgregar.getText()),jTable1.getSelectedRow(),2 );
+        mt.setValueAt(txtFechaAgregar.getText(),jTable1.getSelectedRow(),3 );
+        
+        txtPaisAgregar.setText("");
+       txtPrecioAgregar.setText("");
+       txtFechaAgregar.setText("");
+       
+       
+        
+       
        
        
        
