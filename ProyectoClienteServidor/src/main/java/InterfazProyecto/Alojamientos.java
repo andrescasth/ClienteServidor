@@ -539,7 +539,25 @@ public class Alojamientos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarAlojameinto2ActionPerformed
 
     private void btnBorrarAlojamiento2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarAlojamiento2ActionPerformed
-        // TODO add your handling code here:
+        try {
+            Connection nuevaConexion = DriverManager.getConnection("jdbc:mysql://localhost/paises?serverTimezone=UTC", "root","Rojo2001.");
+
+            String comando_delete = "DELETE FROM t_alojamientos  WHERE id = ?";
+
+            PreparedStatement comandoPreparado = nuevaConexion.prepareStatement(comando_delete);
+
+            // comandoPreparado.setString(1,txtIDActualizar.getText());
+            comandoPreparado.setInt(1, Integer.parseInt(txtIDAlojamiento.getText()));
+
+            comandoPreparado.executeUpdate();
+
+            int fila = Integer.parseInt(txtIDAlojamiento.getText());
+
+            mt.removeRow(fila-1);
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error al conectar con la Base de Datos "+ex.getMessage());
+        }
     }//GEN-LAST:event_btnBorrarAlojamiento2ActionPerformed
 
     private void txtPersonasAlojamiento2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPersonasAlojamiento2ActionPerformed
