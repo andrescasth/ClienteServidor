@@ -95,7 +95,7 @@ public class HomeAdmin extends javax.swing.JFrame {
         btnActualizarPais = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         btnAgregarPais = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnBorrar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -163,11 +163,11 @@ public class HomeAdmin extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton2.setText("Borrar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnBorrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnBorrar.setText("Borrar");
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnBorrarActionPerformed(evt);
             }
         });
 
@@ -205,7 +205,7 @@ public class HomeAdmin extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtPrecioAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblPrecioAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtFechaAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -244,7 +244,7 @@ public class HomeAdmin extends javax.swing.JFrame {
                     .addComponent(jButton5)
                     .addComponent(btnActualizarPais)
                     .addComponent(btnAgregarPais)
-                    .addComponent(jButton2))
+                    .addComponent(btnBorrar))
                 .addContainerGap())
         );
 
@@ -386,10 +386,10 @@ public class HomeAdmin extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jTabbedPane1)
             .addGroup(layout.createSequentialGroup()
-                .addGap(95, 95, 95)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(142, 142, 142)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtIDActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtIDActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -444,9 +444,33 @@ public class HomeAdmin extends javax.swing.JFrame {
        
     }//GEN-LAST:event_btnAgregarPaisActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        mt.removeRow(jTable1.getSelectedRow());
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+       
+        
+        
+        try {
+            Connection nuevaConexion = DriverManager.getConnection("jdbc:mysql://localhost/paises?serverTimezone=UTC", "root","Rojo2001.");
+        
+            
+            String comando_delete = "DELETE FROM t_paises  WHERE id = ?";
+        
+            PreparedStatement comandoPreparado = nuevaConexion.prepareStatement(comando_delete);
+            
+       // comandoPreparado.setString(1,txtIDActualizar.getText());
+        comandoPreparado.setInt(1, Integer.parseInt(txtIDActualizar.getText()));
+        
+        comandoPreparado.executeUpdate();
+        
+        
+        int fila = Integer.parseInt(txtIDActualizar.getText());
+        
+         mt.removeRow(fila-1);
+        
+        
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error al conectar con la Base de Datos "+ex.getMessage());
+        }
+    }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnActualizarPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarPaisActionPerformed
        
@@ -535,9 +559,9 @@ public class HomeAdmin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizarPais;
     private javax.swing.JButton btnAgregarPais;
+    private javax.swing.JButton btnBorrar;
     private javax.swing.JComboBox<String> cboxTipoAgregar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
